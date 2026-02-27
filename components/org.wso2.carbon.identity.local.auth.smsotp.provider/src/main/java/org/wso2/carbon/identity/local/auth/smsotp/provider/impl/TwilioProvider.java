@@ -102,6 +102,8 @@ public class TwilioProvider implements Provider {
                     + ProviderUtil.hashTelephoneNumber(smsData.getToNumber())
                     + " using Twilio. Status: " + status + ". Error: " + errorText, e);
         } catch (NonBlockingProviderException e) {
+            // Re-throw explicitly: NonBlockingProviderException extends ProviderException, so without
+            // this clause it would be re-wrapped by the Exception handler below.
             throw e;
         } catch (Exception e) {
             throw new ProviderException("Error occurred while sending SMS to "

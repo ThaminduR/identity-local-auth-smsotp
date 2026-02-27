@@ -114,6 +114,6 @@ class SmsTenantBreakerObserver implements TenantBreakerObserver {
             return Boolean.parseBoolean(envValue.trim());
         }
 
-        return true;
+        return false;
     }
 }

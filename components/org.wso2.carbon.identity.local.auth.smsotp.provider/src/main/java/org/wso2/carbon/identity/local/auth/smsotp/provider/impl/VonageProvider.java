@@ -90,6 +90,8 @@ public class VonageProvider implements Provider {
                         + " using Vonage");
             }
         } catch (NonBlockingProviderException e) {
+            // Re-throw explicitly: NonBlockingProviderException extends ProviderException, so without
+            // this clause it would be re-wrapped by the Throwable handler below.
             throw e;
         } catch (Throwable throwable) {
             throw new ProviderException("Error occurred while sending SMS to "

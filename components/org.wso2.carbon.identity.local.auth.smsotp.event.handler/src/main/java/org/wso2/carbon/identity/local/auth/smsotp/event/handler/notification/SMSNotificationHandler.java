@@ -146,5 +146,4 @@ public class SMSNotificationHandler extends DefaultNotificationHandler {
         }
         return toNumber;
     }
-
 }

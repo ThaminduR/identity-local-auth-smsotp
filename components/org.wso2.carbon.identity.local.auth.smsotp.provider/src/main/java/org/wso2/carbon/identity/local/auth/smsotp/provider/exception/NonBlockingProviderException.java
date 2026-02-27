@@ -19,7 +19,10 @@
 package org.wso2.carbon.identity.local.auth.smsotp.provider.exception;
 
 /**
- * Indicates a provider send failure that should not be propagated to callers.
+ * Indicates a provider send failure that {@link org.wso2.carbon.identity.local.auth.smsotp.provider.resilience
+ * .ResilientProvider} should record as a circuit-breaker failure but not re-throw to its callers.
+ * The exception is still propagated from individual provider implementations up to {@code ResilientProvider},
+ * which then suppresses it.
  */
 public class NonBlockingProviderException extends ProviderException {
 

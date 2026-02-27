@@ -31,6 +31,8 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import static org.wso2.carbon.identity.central.log.mgt.utils.LoggerUtils.isDiagnosticLogsEnabled;
+
 /**
  * This class represents the provider utility.
  *
@@ -188,17 +190,5 @@ public class ProviderUtil {
             diagnosticLogBuilder.inputParam("inFlight", String.valueOf(inFlight));
         }
         LoggerUtils.triggerDiagnosticLogEvent(diagnosticLogBuilder);
-    }
-
-    private static boolean isDiagnosticLogsEnabled() {
-
-        try {
-            return LoggerUtils.isDiagnosticLogsEnabled();
-        } catch (Throwable throwable) {
-            if (LOG.isDebugEnabled() && DIAGNOSTIC_LOG_FALLBACK_LOGGED.compareAndSet(false, true)) {
-                LOG.debug("Unable to evaluate diagnostic logging state. Skipping diagnostic log publishing.");
-            }
-            return false;
-        }
     }
 }
